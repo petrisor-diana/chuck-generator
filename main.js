@@ -57,16 +57,27 @@ document.getElementById('saveBtn').addEventListener('click', function save() {
 });
 
 /** Joke */
+var jokeSpinnerEl = document.getElementById('jokeSpinner');
 function onRefresh() {
-    getJoke().then(resp => {
-        memeState.text = resp.value;
-        jokeParagraph.innerHTML = resp.value;
-    });
+    jokeSpinnerEl.classList.remove('hidden');
+    jokeParagraph.removeChild(jokeParagraph.firstElementChild);
+    getJoke().then(
+        resp => {
+            let spanEl = document.createElement('span');
+            spanEl.innerHTML = resp.value;
+            memeState.text = resp.value;
+            jokeParagraph.insertBefore(spanEl, jokeParagraph.firstChild);
+            jokeSpinnerEl.classList.add('hidden');
+        },
+        () => {
+            jokeSpinnerEl.classList.add('hidden');
+        }
+    );
 }
 
 /** Carousel */
 var carouselEl = document.getElementById('carousel');
-var spinnerEl = document.getElementById('spinner');
+var carouselSpinnerEl = document.getElementById('carouselSpinner');
 loadPhotos();
 
 carouselEl.addEventListener('click', function(e) {
@@ -76,7 +87,7 @@ carouselEl.addEventListener('click', function(e) {
     }
 });
 
-var page = 1;
+var page = 2;
 var loadTimeout;
 carouselEl.addEventListener('scroll', function(e) {
     // console.log(carouselEl.scrollWidth - carouselEl.scrollLeft, carouselEl.clientWidth);
@@ -84,14 +95,14 @@ carouselEl.addEventListener('scroll', function(e) {
 
     if (carouselEl.scrollWidth - carouselEl.scrollLeft - carouselEl.clientWidth < 50) {
         loadTimeout = setTimeout(function() {
-            spinnerEl.classList.remove('hidden');
+            carouselSpinnerEl.classList.remove('hidden');
             loadPhotos(page++);
         }, 200);
     }
 });
 
 function loadPhotos(pageNumber) {
-    spinnerEl.classList.remove('hidden');
+    carouselSpinnerEl.classList.remove('hidden');
     getPhotos(pageNumber)
         .then(resp => {
             // setTimeout(() => {
@@ -100,12 +111,12 @@ function loadPhotos(pageNumber) {
                 newImageEl.classList.add('carousel-image');
                 newImageEl.src = img.urls.regular;
 
-                carouselEl.insertBefore(newImageEl, spinnerEl);
+                carouselEl.insertBefore(newImageEl, carouselSpinnerEl);
             });
-            spinnerEl.classList.add('hidden');
+            carouselSpinnerEl.classList.add('hidden');
             // }, 1000);
         })
-        .catch(err => spinnerEl.classList.add('hidden'));
+        .catch(err => carouselSpinnerEl.classList.add('hidden'));
 }
 
 /** API FUNCTIONS */

@@ -25,11 +25,19 @@
     <div id="creator">
         <div id="meme" class="meme">
             <button id="saveBtn" type="button">Save</button>
-            <p id="joke">Select an image, add a joke and KABOOM!!!</p>
+            
+            <p id="joke">
+                <span>Select an image, add a joke and KABOOM!!!</span>
+                <span class="spinner hidden" id="jokeSpinner">
+                    <span class="bounce1"></span>
+                    <span class="bounce2"></span>
+                    <span class="bounce3"></span>
+                </span>
+            </p>
         </div>
         <button id="refreshBtn"> Next Joke </button>
         <div id="carousel">
-            <div class="hidden" id="spinner">
+            <div class="spinner hidden" id="carouselSpinner">
                 <div class="bounce1"></div>
                 <div class="bounce2"></div>
                 <div class="bounce3"></div>
