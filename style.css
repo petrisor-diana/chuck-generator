@@ -13,6 +13,7 @@
 }
 
 footer{
+  
     white-space: nowrap;
     overflow: auto;
     border-top: 4px dotted black;
@@ -64,7 +65,14 @@ footer img:hover {
   color: white;
   cursor: pointer;
 }
-
+#footerLoading {
+  vertical-align: top;
+  background-color: black;
+  margin: 80px 30px 20px 30px;
+  width: 60px;
+  height: 60px;
+  
+}
 /* Background Photos */
 
 .bkgPhoto {
@@ -114,6 +122,7 @@ header p{
   width: 40px;
   height: 40px;
   display: inline-block;
+    
 }
 
 .sk-cube-grid .sk-cube {
