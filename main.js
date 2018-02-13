@@ -28,12 +28,17 @@ var footer = document.getElementById("scrollEvent");
 
 footer.addEventListener("scroll", onScroll);
 
+
+var timeoutId
 function onScroll() {
+  clearTimeout(timeoutId)
+
   if (footer.clientWidth + footer.scrollLeft >= footer.scrollWidth - footer.scrollWidth / 10) {
-    log(true);
+   
+      timeoutId= setTimeout(function (){log(true)}, 500);
+      
+    
   } else log(false);
 }
 
-footer.scrollWidth;
-footer.scrollLeft;
-footer.clientWidth;
+
