@@ -3,9 +3,19 @@
     font-family: 'BioRhyme Expanded', serif;
 }
 
+.jokeBackground{
+  color: white;
+  background-color: rgba(102, 98, 98, 0.76);
+  padding: 10px 20px;
+  width: 80%;
+  text-align: center;
+  border-radius: 12px;
+}
+
 footer{
     white-space: nowrap;
     overflow: auto;
+    border-top: 4px dotted black;
 }
 
 footer img {
@@ -35,12 +45,11 @@ footer img:hover {
 }
 
 #jokeBtn {
-  position: absolute;
-  top: 120%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  margin: 5px;
-  
+  margin:10px; 
+}
+
+#firstPage{
+  text-align: center;
 }
 
 .bkgPhoto p {
@@ -60,23 +69,26 @@ footer img:hover {
 
 .bkgPhoto {
   position: relative;
-  /* top: 20%; 
-  left: 30%;  */
+  /* top: 20%; */
+  left: 30%; 
   width: 600px;
   height: 600px;
   background-image: url("https://www.cstatic-images.com/stock/379x253/15/img-1276321340-1509471668915.jpg");
   background-size: cover;
   background-position: center;
+  margin: 40px 0;
 }
 
 /* Center titles */
 
 .titleCenter {
   text-align: center;
+  font-size: 50px;
 }
 
 /* Cube - Loading animation*/
 header{
+    position: relative;
     background-color: #044389;
     text-align: center;
     color: white;
@@ -99,14 +111,13 @@ header p{
 .sk-cube-grid {
   width: 40px;
   height: 40px;
-  margin: 100px auto;
   display: inline-block;
 }
 
 .sk-cube-grid .sk-cube {
   width: 33%;
   height: 33%;
-  background-color: #333;
+  background-color: white;
   float: left;
 
   animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
