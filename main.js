@@ -44,6 +44,7 @@ var footer = document.getElementById("scrollEvent");
 
 footer.addEventListener("scroll", onScroll);
 
+// Scroll functionality
 var timeoutId
 var nr=2;
 var footerImg=document.getElementById("imageGallery");
@@ -82,3 +83,61 @@ function addPhotos(list) {
 };
 
 getPhotos(1)
+
+// Save functionality
+var saveBtn = document.getElementById("saveBtn");
+var memeElement = document.getElementById("meme");
+
+var currentImage = null;
+
+saveBtn.addEventListener('click', onSave);
+
+function onSave() {
+  var myMeme = {
+    text: jokeLine.innerHTML,
+    img: currentImage
+  };
+
+  // We get the previously saved Memes
+  var savedMemes = JSON.parse(localStorage.getItem('memes'));
+
+  // localStorage.getItem
+  // localStorage.setItem
+  // localStorage.removeItem
+
+  // If I don't have any previously saved memes, initialize the variable
+  // to an empty array.
+  if(!savedMemes) {
+    savedMemes = [];
+  } 
+
+  // Add the currently saved meme to localstorage
+  savedMemes.push(myMeme);
+
+  // Add the currently saved meme to the page
+  addMeme(myMeme);
+
+  // Save to localStorage
+  localStorage.setItem('memes', JSON.stringify(savedMemes));
+}
+
+function addMeme(meme) {
+  mySecondPage.innerHTML += '<div class="bkgPhoto" style="background-image: url(' + meme.img + ')"><p class="jokeBackground">' + meme.text +'</p></div>'
+}
+
+// Select picture functionality
+footer.addEventListener('click', function(e) {
+  currentImage = e.srcElement.src;
+  memeElement.style.backgroundImage = 'url("' + currentImage +'")'
+});
+
+
+// When opening the app show the saved memes
+var mySavedMemes = JSON.parse(localStorage.getItem('memes'));
+
+if(savedMemes){
+  for(var i = 0; i< mySavedMemes.length; i++) {
+    addMeme(mySavedMemes[i]);
+  }
+}
+
